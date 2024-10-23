@@ -1,5 +1,5 @@
-import VideoCard from "./video-card";
 import { useFetch } from "@/hooks/useFetch";
+import VideoCard from "@/components/video-card";
 
 const Home = () => {
   const [data] = useFetch("/home");

@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "@/index.css";
 import App from "@/App";
-import Home from "@/components/home";
+import Home from "@/pages/home";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/sonner";

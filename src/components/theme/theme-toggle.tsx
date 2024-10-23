@@ -15,7 +15,7 @@ const ThemeToggle = () => {
         <Button
           size="icon"
           variant="outline"
-          className="rounded-full"
+          className="rounded-full px-4"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           {theme === "dark" ? <Sun /> : <Moon />}

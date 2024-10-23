@@ -3,9 +3,9 @@ import ThemeToggle from "./theme/theme-toggle";
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between px-6 py-3">
+    <nav className="sticky top-0 z-50 flex items-center justify-between bg-white p-8 py-3 dark:bg-zinc-950 sm:px-14 lg:px-20">
       <Link to="/">
-        <p className="text-xl font-medium text-red-500">Cinefy</p>
+        <p className="text-2xl font-semibold text-red-500">Cinefy</p>
       </Link>
 
       <ThemeToggle />

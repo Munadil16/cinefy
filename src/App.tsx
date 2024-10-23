@@ -1,9 +1,7 @@
+import { Outlet } from "react-router-dom";
+
 const App = () => {
-  return (
-    <main>
-      <h1>Cinefy</h1>
-    </main>
-  );
+  return <Outlet />;
 };
 
 export default App;

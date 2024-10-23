@@ -3,9 +3,10 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "@/index.css";
-import App from "@/App.tsx";
+import App from "@/App";
 import Home from "@/components/home";
-import Navbar from "@/components/navbar.tsx";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="" element={<Home />} />
           </Route>
         </Routes>
+        <Footer />
         <Toaster position="top-right" richColors />
       </BrowserRouter>
     </ThemeProvider>

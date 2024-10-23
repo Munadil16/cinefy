@@ -21,12 +21,12 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
       <div className="flex items-center gap-2">
         <img
           className="h-7 w-7 rounded-full"
-          src={videoMetadata.channelThumbnail?.[0].url}
+          src={videoMetadata.channelThumbnail?.[0]?.url}
           alt="Channel logo"
         />
 
         <p className="cursor-pointer text-sm font-semibold text-red-600 hover:underline dark:text-red-500">
-          {videoMetadata.channelHandle}
+          {videoMetadata.channelHandle ?? videoMetadata.channelTitle}
         </p>
       </div>
 

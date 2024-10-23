@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "@/index.css";
 import App from "@/App";
 import Home from "@/pages/home";
+import Trending from "@/pages/trending";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/sonner";
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="" element={<Home />} />
+            <Route path="trending" element={<Trending />} />
           </Route>
         </Routes>
         <Footer />

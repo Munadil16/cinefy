@@ -12,6 +12,7 @@ export interface VideoMetadataType {
   videoId: string;
   viewCount: string;
   lengthText: string;
+  channelTitle: string;
   channelHandle: string;
   thumbnail?: Thumbnail[];
   publishedTimeText: string;

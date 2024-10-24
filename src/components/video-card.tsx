@@ -1,6 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import { VideoMetadataType } from "@/types/video-metadata.types";
 
 const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
+  const navigate = useNavigate();
+
+  const handleVideoClick = () => {
+    navigate(`/video?id=${videoMetadata.videoId}`);
+  };
+
+  const handleChannelClick = () => {
+    navigate(`/channel?id=${videoMetadata.channelId}`);
+  };
+
   return (
     <article className="flex flex-col gap-2">
       <div className="relative">
@@ -8,6 +19,9 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
           className="h-60 w-full cursor-pointer rounded-xl sm:h-56"
           src={videoMetadata.thumbnail?.[0].url}
           alt="Thumbnail"
+          role="button"
+          aria-label="Play video"
+          onClick={handleVideoClick}
         />
         {videoMetadata.lengthText !== "LIVE" && (
           <p className="absolute bottom-2 right-2 rounded-md bg-black p-1 text-xs font-medium text-white">
@@ -25,7 +39,12 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
           alt="Channel logo"
         />
 
-        <p className="cursor-pointer text-sm font-semibold text-red-600 hover:underline dark:text-red-500">
+        <p
+          className="cursor-pointer text-sm font-semibold text-red-600 hover:underline dark:text-red-500"
+          role="button"
+          aria-label="Visit channel"
+          onClick={handleChannelClick}
+        >
           {videoMetadata.channelHandle ?? videoMetadata.channelTitle}
         </p>
       </div>

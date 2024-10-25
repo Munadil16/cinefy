@@ -12,7 +12,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="fixed bottom-0 w-full py-8 text-center">
+    <footer className="fixed bottom-0 w-full pb-8 text-center">
       <TooltipProvider>
         <Dock
           className="gap-3 rounded-full hover:gap-0"

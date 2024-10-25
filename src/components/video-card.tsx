@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { VideoMetadataType } from "@/types/video-metadata.types";
 
@@ -14,21 +15,29 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
 
   return (
     <article className="flex flex-col gap-2">
-      <div className="relative">
+      <motion.div
+        className="relative cursor-pointer"
+        role="button"
+        aria-label="Play video"
+        whileHover={{
+          scale: 1.025,
+        }}
+        transition={{
+          duration: 0.2,
+        }}
+        onClick={handleVideoClick}
+      >
         <img
-          className="h-60 w-full cursor-pointer rounded-xl sm:h-56"
+          className="h-60 w-full rounded-xl sm:h-56"
           src={videoMetadata.thumbnail?.[0].url}
           alt="Thumbnail"
-          role="button"
-          aria-label="Play video"
-          onClick={handleVideoClick}
         />
         {videoMetadata.lengthText !== "LIVE" && (
-          <p className="absolute bottom-2 right-2 rounded-md bg-black p-1 text-xs font-medium text-white">
+          <p className="absolute bottom-2 right-2 select-none rounded-md bg-black p-1 text-xs font-medium text-white">
             {videoMetadata.lengthText}
           </p>
         )}
-      </div>
+      </motion.div>
 
       <p className="font-semibold">{videoMetadata.title}</p>
 

@@ -24,7 +24,7 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
         onClick={handleVideoClick}
       >
         <img
-          className="h-60 w-full rounded-xl object-cover sm:h-56"
+          className="h-48 w-full rounded-xl sm:h-56"
           src={videoMetadata.thumbnail?.[0].url}
           alt="Thumbnail"
         />

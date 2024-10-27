@@ -42,7 +42,7 @@ const Navbar = () => {
           <Input
             ref={searchRef}
             className="h-9 border-0 px-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-            placeholder="Search (Ctrl or Cmd + k)"
+            placeholder="Search (ctrl+k)"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={(e) => {

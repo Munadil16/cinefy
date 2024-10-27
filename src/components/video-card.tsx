@@ -35,7 +35,7 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
         )}
       </motion.div>
 
-      <p className="break-all font-semibold">{videoMetadata.title}</p>
+      <p className="break-words font-semibold">{videoMetadata.title}</p>
 
       <div className="flex items-center gap-2">
         <img

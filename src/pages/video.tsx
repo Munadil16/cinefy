@@ -7,7 +7,14 @@ import { Button } from "@/components/ui/button";
 import VideoCard from "@/components/video-card";
 import SimpleLoader from "@/loaders/simple-loader";
 import { ContentType } from "@/types/content.types";
+import { VideoMetadataType } from "@/types/video-metadata.types";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
+
+const isValidVideo = (video: VideoMetadataType): boolean => {
+  return (
+    video.type === "video" && !!video.channelThumbnail && !!video.viewCount
+  );
+};
 
 const Video = () => {
   const navigate = useNavigate();
@@ -16,6 +23,8 @@ const Video = () => {
   const [data, loading] = useFetch(`/related?id=${id}`);
   const [contentData, setContentData] = useState<ContentType>();
   const [loadingDetails, setLoadingDetails] = useState<boolean>(false);
+
+  const validVideos = data.filter(isValidVideo);
 
   useEffect(() => {
     setLoadingDetails(true);
@@ -104,21 +113,8 @@ const Video = () => {
         <h1 className="mb-7 text-3xl font-semibold">Related videos</h1>
 
         <div className="grid grid-cols-1 gap-9 sm:grid-cols-2 lg:grid-cols-1">
-          {data.map((videoMetadata) => {
-            if (
-              videoMetadata.type === "video" &&
-              videoMetadata.channelThumbnail &&
-              videoMetadata.viewCount
-            ) {
-              return (
-                <VideoCard
-                  key={videoMetadata.videoId}
-                  videoMetadata={videoMetadata}
-                />
-              );
-            }
-
-            return null;
+          {validVideos.map((video) => {
+            return <VideoCard key={video.videoId} videoMetadata={video} />;
           })}
         </div>
       </section>

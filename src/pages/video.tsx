@@ -7,22 +7,18 @@ import ReactPlayer from "react-player/youtube";
 import { Button } from "@/components/ui/button";
 import VideoCard from "@/components/video-card";
 import { ContentType } from "@/types/content.types";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 
 const Video = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const [data] = useFetch(`/related?id=${id}`);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [data, loading] = useFetch(`/related?id=${id}`);
   const [contentData, setContentData] = useState<ContentType>();
-
-  const handleChannelClick = () => {
-    navigate(`/channel?id=${contentData?.channelId}`);
-  };
+  const [loadingDetails, setLoadingDetails] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
+    setLoadingDetails(true);
 
     const fetchVideoDetails = async () => {
       try {
@@ -48,14 +44,14 @@ const Video = () => {
           toast.error("Cannot retrieve video at this moment");
         }
       } finally {
-        setLoading(false);
+        setLoadingDetails(false);
       }
     };
 
     fetchVideoDetails();
   }, [searchParams]);
 
-  if (loading) {
+  if (loading || loadingDetails) {
     return (
       <div className="flex min-h-[75svh] items-center justify-center">
         <Loader className="animate-spin" />
@@ -92,14 +88,14 @@ const Video = () => {
               {contentData.title}
             </p>
 
-            <p
+            <Link
               className="z-50 cursor-pointer font-semibold text-red-500 hover:underline dark:text-red-600"
-              onClick={handleChannelClick}
-              role="button"
+              to={`https://youtube.com/channel/${contentData.channelId}`}
+              target="_blank"
               aria-label="Visit channel"
             >
               {contentData.channelTitle}
-            </p>
+            </Link>
 
             <p className="text-sm font-medium text-black/80 dark:text-white/80">
               {parseInt(contentData.viewCount).toLocaleString()} views

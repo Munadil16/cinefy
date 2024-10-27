@@ -1,7 +1,10 @@
 import { cn } from "@/lib/utils";
+import { X } from "@/assets/icons/x";
 import { Link } from "react-router-dom";
 import { Dock, DockIcon } from "./ui/dock";
+import { Separator } from "./ui/separator";
 import { buttonVariants } from "./ui/button";
+import { Github } from "@/assets/icons/github";
 import { Home, TrendingUp } from "lucide-react";
 import {
   Tooltip,
@@ -51,6 +54,47 @@ const Footer = () => {
                 </Link>
               </TooltipTrigger>
               <TooltipContent>Trending</TooltipContent>
+            </Tooltip>
+          </DockIcon>
+
+          <Separator
+            orientation="vertical"
+            className="h-3/4 bg-neutral-600 dark:bg-white/70"
+          />
+
+          <DockIcon>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  to={"https://x.com/Munadil16"}
+                  target="_blank"
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "box-content size-12 rounded-full p-2 transition-all duration-200"
+                  )}
+                >
+                  <X />
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>X / Twitter</TooltipContent>
+            </Tooltip>
+          </DockIcon>
+
+          <DockIcon>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  to={"https://github.com/Munadil16"}
+                  target="_blank"
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "box-content size-12 rounded-full p-2 transition-all duration-200"
+                  )}
+                >
+                  <Github />
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>Github</TooltipContent>
             </Tooltip>
           </DockIcon>
         </Dock>

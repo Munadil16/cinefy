@@ -3,7 +3,7 @@ import { useFetch } from "@/hooks/useFetch";
 import DisplayContent from "@/components/display-content";
 
 const Trending = () => {
-  const [data] = useFetch("/trending?geo=US");
+  const [data, loading] = useFetch("/trending?geo=IN");
 
   return (
     <main className="p-8 sm:px-14 lg:px-20">
@@ -12,7 +12,7 @@ const Trending = () => {
         <h1 className="text-3xl font-medium">Trending</h1>
       </div>
 
-      <DisplayContent data={data} />
+      <DisplayContent data={data} isLoading={loading} />
     </main>
   );
 };

@@ -4,7 +4,7 @@ import DisplayContent from "@/components/display-content";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
-  const [data] = useFetch(
+  const [data, loading] = useFetch(
     `/search?query=${searchParams.get("query") as string}`
   );
 
@@ -19,7 +19,7 @@ const Search = () => {
         </h1>
       </div>
 
-      <DisplayContent data={data} />
+      <DisplayContent data={data} isLoading={loading} />
     </main>
   );
 };

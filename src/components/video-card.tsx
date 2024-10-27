@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { VideoMetadataType } from "@/types/video-metadata.types";
 
 const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
@@ -7,10 +7,6 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
 
   const handleVideoClick = () => {
     navigate(`/video?id=${videoMetadata.videoId}`);
-  };
-
-  const handleChannelClick = () => {
-    navigate(`/channel?id=${videoMetadata.channelId}`);
   };
 
   return (
@@ -28,7 +24,7 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
         onClick={handleVideoClick}
       >
         <img
-          className="h-60 w-full rounded-xl sm:h-56"
+          className="h-60 w-full rounded-xl object-cover sm:h-56"
           src={videoMetadata.thumbnail?.[0].url}
           alt="Thumbnail"
         />
@@ -39,7 +35,7 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
         )}
       </motion.div>
 
-      <p className="font-semibold">{videoMetadata.title}</p>
+      <p className="break-all font-semibold">{videoMetadata.title}</p>
 
       <div className="flex items-center gap-2">
         <img
@@ -48,14 +44,14 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
           alt="Channel logo"
         />
 
-        <p
+        <Link
           className="cursor-pointer text-sm font-semibold text-red-600 hover:underline dark:text-red-500"
-          role="button"
+          to={`https://youtube.com/channel/${videoMetadata.channelId}`}
+          target="_blank"
           aria-label="Visit channel"
-          onClick={handleChannelClick}
         >
           {videoMetadata.channelHandle ?? videoMetadata.channelTitle}
-        </p>
+        </Link>
       </div>
 
       <div className="flex items-center gap-2 text-xs font-medium text-black/90 dark:text-white/80">

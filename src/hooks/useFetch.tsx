@@ -6,9 +6,12 @@ import { VideoMetadataType } from "@/types/video-metadata.types";
 const BASE_URL = "https://yt-api.p.rapidapi.com";
 
 export const useFetch = (route: string) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<Array<VideoMetadataType>>([]);
 
   useEffect(() => {
+    setLoading(true);
+
     const fetchData = async () => {
       try {
         const res = await axios.get(`${BASE_URL}${route}`, {
@@ -27,11 +30,13 @@ export const useFetch = (route: string) => {
         } else {
           toast.error("Something went wrong");
         }
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [route]);
 
-  return [data] as const;
+  return [data, loading] as const;
 };

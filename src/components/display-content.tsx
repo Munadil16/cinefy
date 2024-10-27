@@ -1,8 +1,14 @@
 import { motion } from "framer-motion";
 import VideoCard from "@/components/video-card";
+import VideoCardLoader from "./video-card-loader";
 import { VideoMetadataType } from "@/types/video-metadata.types";
 
-const DisplayContent = ({ data }: { data: VideoMetadataType[] }) => {
+interface DisplayContentProps {
+  data: VideoMetadataType[];
+  isLoading: boolean;
+}
+
+const DisplayContent = ({ data, isLoading }: DisplayContentProps) => {
   return (
     <section>
       <motion.div
@@ -17,6 +23,11 @@ const DisplayContent = ({ data }: { data: VideoMetadataType[] }) => {
           stiffness: 120,
         }}
       >
+        {isLoading &&
+          Array.from({ length: 6 }, (_, index) => {
+            return <VideoCardLoader key={index} />;
+          })}
+
         {data.map((videoMetadata) => {
           if (
             videoMetadata.type === "video" &&

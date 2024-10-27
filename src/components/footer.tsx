@@ -30,7 +30,7 @@ const Footer = () => {
                   to={"/"}
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "box-content size-12 rounded-full p-2 transition-all duration-200"
+                    "rounded-full p-8 transition-all duration-200"
                   )}
                 >
                   <Home />
@@ -47,7 +47,7 @@ const Footer = () => {
                   to={"/trending"}
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "box-content size-12 rounded-full p-2 transition-all duration-200"
+                    "rounded-full p-8 transition-all duration-200"
                   )}
                 >
                   <TrendingUp />
@@ -66,11 +66,11 @@ const Footer = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to={"https://x.com/Munadil16"}
+                  to={"https://x.com/munadil_xd"}
                   target="_blank"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "box-content size-12 rounded-full p-2 transition-all duration-200"
+                    "rounded-full p-8 transition-all duration-200"
                   )}
                 >
                   <X />
@@ -88,7 +88,7 @@ const Footer = () => {
                   target="_blank"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "box-content size-12 rounded-full p-2 transition-all duration-200"
+                    "rounded-full p-8 transition-all duration-200"
                   )}
                 >
                   <Github />

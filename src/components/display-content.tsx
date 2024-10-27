@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import VideoCard from "@/components/video-card";
-import VideoCardLoader from "./video-card-loader";
+import VideoCardLoader from "@/loaders/video-card-loader";
 import { VideoMetadataType } from "@/types/video-metadata.types";
 
 interface DisplayContentProps {
@@ -8,7 +9,15 @@ interface DisplayContentProps {
   isLoading: boolean;
 }
 
-const DisplayContent = ({ data, isLoading }: DisplayContentProps) => {
+const isValidVideo = (video: VideoMetadataType): boolean => {
+  return (
+    video.type === "video" && !!video.channelThumbnail && !!video.viewCount
+  );
+};
+
+const DisplayContent = memo(({ data, isLoading }: DisplayContentProps) => {
+  const validVideos = data.filter(isValidVideo);
+
   return (
     <section>
       <motion.div
@@ -28,25 +37,12 @@ const DisplayContent = ({ data, isLoading }: DisplayContentProps) => {
             return <VideoCardLoader key={index} />;
           })}
 
-        {data.map((videoMetadata) => {
-          if (
-            videoMetadata.type === "video" &&
-            videoMetadata.channelThumbnail &&
-            videoMetadata.viewCount
-          ) {
-            return (
-              <VideoCard
-                key={videoMetadata.videoId}
-                videoMetadata={videoMetadata}
-              />
-            );
-          }
-
-          return null;
+        {validVideos.map((video) => {
+          return <VideoCard key={video.videoId} videoMetadata={video} />;
         })}
       </motion.div>
     </section>
   );
-};
+});
 
 export default DisplayContent;

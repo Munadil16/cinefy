@@ -1,11 +1,11 @@
 import { toast } from "sonner";
-import { Loader } from "lucide-react";
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useFetch } from "@/hooks/useFetch";
 import ReactPlayer from "react-player/youtube";
 import { Button } from "@/components/ui/button";
 import VideoCard from "@/components/video-card";
+import SimpleLoader from "@/loaders/simple-loader";
 import { ContentType } from "@/types/content.types";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
 
@@ -49,14 +49,10 @@ const Video = () => {
     };
 
     fetchVideoDetails();
-  }, [searchParams]);
+  }, [id]);
 
   if (loading || loadingDetails) {
-    return (
-      <div className="flex min-h-[75svh] items-center justify-center">
-        <Loader className="animate-spin" />
-      </div>
-    );
+    return <SimpleLoader />;
   }
 
   if (!contentData) {

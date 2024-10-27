@@ -8,7 +8,7 @@ import App from "@/App";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/sonner";
-import VideoCardLoader from "./loaders/video-card-loader";
+import SimpleLoader from "./loaders/simple-loader";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const Home = lazy(() => import("@/pages/home"));
@@ -21,7 +21,7 @@ createRoot(document.getElementById("root")!).render(
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <BrowserRouter>
         <Navbar />
-        <Suspense fallback={<VideoCardLoader />}>
+        <Suspense fallback={<SimpleLoader />}>
           <Routes>
             <Route path="/" element={<App />}>
               <Route path="" element={<Home />} />

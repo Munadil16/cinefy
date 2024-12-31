@@ -24,7 +24,7 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
         onClick={handleVideoClick}
       >
         <img
-          className="h-48 w-full rounded-xl sm:h-56"
+          className="aspect-video w-full rounded-xl"
           src={videoMetadata.thumbnail?.[0].url}
           alt="Thumbnail"
         />
@@ -50,7 +50,8 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
           target="_blank"
           aria-label="Visit channel"
         >
-          {videoMetadata.channelHandle ?? videoMetadata.channelTitle}
+          {videoMetadata.channelHandle?.substring(0, 30) ??
+            videoMetadata.channelTitle}
         </Link>
       </div>
 
@@ -60,12 +61,12 @@ const VideoCard = ({ videoMetadata }: { videoMetadata: VideoMetadataType }) => {
             <p className="relative h-2 w-2 rounded-full bg-red-500 font-medium text-white"></p>
             <p className="absolute h-2 w-2 animate-ping rounded-full bg-red-500 font-medium text-white"></p>
             <p className="font-semibold text-red-500">
-              {parseInt(videoMetadata.viewCount).toLocaleString()} watching
+              {Number(videoMetadata.viewCount).toLocaleString()} watching
             </p>
           </>
         ) : (
           <>
-            <p>{parseInt(videoMetadata.viewCount).toLocaleString()} views</p>
+            <p>{Number(videoMetadata.viewCount).toLocaleString()} views</p>
             <p className="h-1 w-1 rounded-full bg-black/90 dark:bg-white/80"></p>
             <p>{videoMetadata.publishedTimeText}</p>
           </>
